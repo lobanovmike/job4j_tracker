@@ -5,10 +5,10 @@ public class Tracker {
     private int ids = 1;
     private int size = 0;
 
-    public Item add(Item item) {
-        item.setId(ids++);
-        items[size++] = item;
-        return item;
+    public Item add(Item newItem) {
+        newItem.setId(ids++);
+        items[size++] = newItem;
+        return newItem;
     }
 
     public Item findById(int id) {
