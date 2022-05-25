@@ -8,8 +8,9 @@ public class College {
         ivan.setName("Ivan Ivanovich Ivanov");
         ivan.setGroup(3);
         ivan.setDateOfEntrance(LocalDate.of(2021, 9, 1));
+        String ln = System.lineSeparator();
         System.out.println("Name: " + ivan.getName()
-                + "\nGroup: " + ivan.getGroup()
-                + "\nDate of Entrance: " + ivan.getDateOfEntrance());
+                + ln + "Group: " + ivan.getGroup()
+                + ln + "Date of Entrance: " + ivan.getDateOfEntrance());
     }
 }
