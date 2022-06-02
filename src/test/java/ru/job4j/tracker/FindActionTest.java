@@ -9,11 +9,11 @@ public class FindActionTest {
     @Test
     public void whenFindByIdOneIsSuccessfully() {
         Output out = new StubOutput();
-        Input in = new StubInput(new String[] {
-                "0", "1", "1"
-        });
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test1"));
+        Input in = new StubInput(new String[] {
+                "0", String.valueOf(item.getId()), "1"
+        });
         UserAction[] actions = new UserAction[] {
                 new FindAction(out),
                 new ExitAction()
@@ -35,12 +35,12 @@ public class FindActionTest {
     @Test
     public void whenFindByIdFiveItemIsNotFound() {
         Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("test1"));
         Input in = new StubInput(new String[] {
                 "0", "5", "1"
         });
         String findId = "5";
-        Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("test1"));
         UserAction[] actions = new UserAction[] {
                 new FindAction(out),
                 new ExitAction()
