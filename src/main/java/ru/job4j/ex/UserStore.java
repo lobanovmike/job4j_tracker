@@ -15,9 +15,8 @@ public class UserStore {
             throw new UserInvalidException("User " + user.getUsername() + " is not a valid");
         } else if (user.getUsername().length() < 3) {
             throw new UserInvalidException("Username length is less then 3");
-        } else {
-            return true;
         }
+        return true;
     }
 
     public static void main(String[] args) {
