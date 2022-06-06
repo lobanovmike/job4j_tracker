@@ -23,7 +23,7 @@ package ru.job4j.ooa;
         }
 
         public void printCountEngine() {
-            int engineCount = getName().equals("A380") ? 4 : COUNT_ENGINE;
+            int engineCount = "A380".equals(getName()) ? 4 : COUNT_ENGINE;
             System.out.println("Количество двигателей равно: " + engineCount);
         }
 
