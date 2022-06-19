@@ -2,6 +2,9 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -15,10 +18,9 @@ public class ShowAllActionTest {
         Input in = new StubInput(new String[] {
                 "0", "1"
         });
-        UserAction[] actions = new UserAction[] {
-                new ShowAllAction(out),
-                new ExitAction()
-        };
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new ShowAllAction(out));
+        actions.add(new ExitAction());
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
@@ -41,10 +43,9 @@ public class ShowAllActionTest {
         Input in = new StubInput(new String[] {
                 "0", "1"
         });
-        UserAction[] actions = new UserAction[] {
-                new ShowAllAction(out),
-                new ExitAction()
-        };
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new ShowAllAction(out));
+        actions.add(new ExitAction());
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(

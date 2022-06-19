@@ -2,6 +2,9 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -14,10 +17,9 @@ public class FindByNameActionTest {
         Input in = new StubInput(new String[]{
                 "0", "test1", "1"
         });
-        UserAction[] actions = new UserAction[] {
-                new FindByNameAction(out),
-                new ExitAction()
-        };
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new FindByNameAction(out));
+        actions.add(new ExitAction());
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
@@ -40,10 +42,9 @@ public class FindByNameActionTest {
         Input in = new StubInput(new String[]{
                 "0", findName, "1"
         });
-        UserAction[] actions = new UserAction[] {
-                new FindByNameAction(out),
-                new ExitAction()
-        };
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new FindByNameAction(out));
+        actions.add(new ExitAction());
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(

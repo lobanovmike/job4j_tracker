@@ -2,7 +2,9 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.nullValue;
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
@@ -14,9 +16,8 @@ public class StartUITest {
                 "0"
         });
         Tracker tracker = new Tracker();
-        UserAction[] actions = {
-                new ExitAction()
-        };
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new ExitAction());
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
                 "Menu." + System.lineSeparator()
@@ -31,9 +32,8 @@ public class StartUITest {
                 "10", "0"
         });
         Tracker tracker = new Tracker();
-        UserAction[] actions = new UserAction[] {
-                new ExitAction()
-        };
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new ExitAction());
         String ln = System.lineSeparator();
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
