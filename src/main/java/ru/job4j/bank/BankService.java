@@ -5,13 +5,34 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Класс описывает простейшую модель работы банковского сервиса, которая позволяет
+ * регистрировать нового пользователя, добавлять ему счет и переводить деньги с одного
+ * счета на другой.
+ * @author Mikhail Lobanov
+ * @version 1.0
+ */
 public class BankService {
+    /**
+     * Хранение пользователей с их счетами осуществляется в коллекции типа HashMap
+     */
     private final Map<User, List<Account>> users = new HashMap<>();
 
+    /**
+     * Метод принимает нового пользователя и если такой отсутствует в хранилище, то
+     * добавляет его.
+     * @param user пользователь, который добавляется в хранилище
+     */
     public void addUser(User user) {
         users.putIfAbsent(user, new ArrayList<Account>());
     }
 
+    /**
+     * Метод принимает паспорт пользователя и счет. Если пользователь с указанным паспортом есть в хранилище
+     * и если у него нет указанного счета, то пользователю добавляется счет.
+      * @param passport паспорт, по которому ищется пользователь
+     * @param account счет, который добавляется к пользователю
+     */
     public void addAccount(String passport, Account account) {
         User user = findByPassport(passport);
         if (user != null) {
@@ -22,6 +43,12 @@ public class BankService {
         }
     }
 
+    /**
+     * Метод принимает паспорт пользователя. Если пользователь с указанным паспортом найден
+     * то возвращается найденный пользователь. В противном случае возвращается null
+     * @param passport паспорт по которому ищется пользователь
+     * @return найденный пользователь, либо null
+     */
     public User findByPassport(String passport) {
         for (User user : users.keySet()) {
             if (passport.equals(user.getPassport())) {
@@ -31,6 +58,15 @@ public class BankService {
         return null;
     }
 
+    /**
+     * Метод принимает паспорт пользователя и реквизиты счета.
+     * Если пользователь с указанным паспортом есть в хранилище и у него есть счет с указанными реквизитами,
+     * то возвращается счет пользователя, в противном случае возвращается значение null.
+     * @param passport паспорт, по которому ищется пользователь
+     * @param requisite реквизиты счета, по которому ищется счет
+     * @return счет пользователя, если таковой имеется, ли значение null, если счета с указанными реквизитами
+     * не существует
+     */
     public Account findByRequisite(String passport, String requisite) {
         User user = findByPassport(passport);
         if (user != null) {
@@ -43,6 +79,17 @@ public class BankService {
         return null;
     }
 
+    /**
+     * Метод принимает паспорт и реквизиты счета с которого осуществляется перевод,
+     * паспорт и реквизиты счета на который осуществляется перевод, и сумму перевода.
+     * Возвращает true, если перевод был успешным
+     * @param srcPassport паспорт пользователя с чьего счета осуществляется перевод
+     * @param srcRequisite реквизиты счета с которого осуществляется перевод
+     * @param destPassport паспорт пользователя, на счет которого осуществляется перевод
+     * @param destRequisite реквизиты счета на который осуществляется перевод
+     * @param amount сумма перевода
+     * @return результат перевода, true если перевод был успешен, в противном случае false
+     */
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
         boolean rsl = false;
